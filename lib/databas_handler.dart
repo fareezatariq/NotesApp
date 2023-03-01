@@ -23,5 +23,9 @@ class DBHelper{
       'CREATE TABLE notes (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, age INTEGER NOT NULL, description TEXT NOT NULL, email TEXT)'
     );
   }
-
+Future<NotesModel> insert(NotesModel notesModel)async{
+    var dbClient = await db;
+    await dbClient!.insert('notes', notesModel.toMap());
+    return notesModel;
+}
 }
